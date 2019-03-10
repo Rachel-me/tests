@@ -1,0 +1,178 @@
+@charset "utf-8";
+body,section,h1,p,input{
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration:none;
+}
+body,html{
+  width: 100%;
+  height: 100%;
+}
+
+.container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* 底部导航开始 */
+/* 不显示input */
+.container>input{
+  display: none;
+}
+/* 底部导航.nav-menu */
+.container .nav-menu{
+  position: absolute;
+  bottom:0;
+  left:0;
+  z-index: 1;
+  width: 20%;
+  height: 50px;
+  text-align:center;
+  line-height:50px;
+  color:#fff;
+  background-color: rgb(0, 169, 175);
+  cursor:pointer;
+}
+.container>input:checked+.nav-menu{
+  background-color: rgb(0, 138, 143);
+}
+.container>input:checked+.nav-menu::before{
+  border-bottom-color: rgb(0, 138, 143);
+}
+
+/* 调整底部导航菜单的位置 */
+#control-2+.nav-menu{
+  left:20%;
+}
+#control-3+.nav-menu{
+  left:40%;
+}
+#control-4+.nav-menu{
+  left:60%;
+}
+#control-5+.nav-menu{
+  left:80%;
+}
+
+/* 导航菜单的三角 */
+.container>.nav-menu::before{
+  content: "";
+  position: absolute;
+  top:-40px;
+  left:50%;
+  margin-left: -20px;
+  border: 20px solid transparent;
+  border-bottom-color: rgb(0, 169, 175); 
+}
+/* 移动内容区块 */
+#control-1:checked ~ .con-wrap{
+  transform: translateY(0);
+}
+#control-2:checked ~ .con-wrap{
+  transform: translateY(-100%);
+}
+#control-3:checked ~ .con-wrap{
+  transform: translateY(-200%);
+}
+#control-4:checked ~ .con-wrap{
+  transform: translateY(-300%);
+}
+#control-5:checked ~ .con-wrap{
+  transform: translateY(-400%);
+}
+/* 底部导航结束 */
+
+/* 中间内容区块 */
+.container .con-wrap{
+  width: 100%;
+  height: 100%;
+  transition:all .5s ease-in-out;
+}
+.con-wrap .s-con{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;  
+}
+
+/* 内容区块的顶部三角 */
+.con-wrap .s-con:before{
+  content: "";
+  position: absolute;
+  left:50%;
+  margin-left: -100px;
+  border: 100px solid transparent;
+  border-top-color: rgb(0, 214, 221);
+}
+
+/* 修改相应区块的背景和字体 */
+.con-wrap .con-change{
+  background-color: rgb(0, 214, 221);
+}
+.con-wrap .con-change::before{
+  border-top-color:#fff;
+}
+.con-wrap .s-con h2,.s-con p{
+  position: absolute;
+  top:50%;
+  left:10%;
+  margin:0 auto;
+  width: 80%;
+}
+.con-wrap .s-con h2{
+  margin-top: -80px;
+  font-size:40px;
+  color:rgb(0, 214, 221);
+}
+.con-wrap .s-con.con-change h2{
+  color:#fff;
+}
+.con-wrap .s-con p{
+  color:#ccc;
+  font-size:20px;
+}
+.con-wrap .s-con.con-change p{
+  color:#eee;
+}
+
+/* 选择相应菜单时的动画 */
+#control-1:checked~.con-wrap #s-con1 h2,
+#control-2:checked~.con-wrap #s-con2 h2,
+#control-3:checked~.con-wrap #s-con3 h2,
+#control-4:checked~.con-wrap #s-con4 h2,
+#control-5:checked~.con-wrap #s-con5 h2{
+    animation: moveDown .5s ease-in .2s forwards;
+}
+
+@keyframes moveDown{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#control-1:checked~.con-wrap #s-con1 p,
+#control-2:checked~.con-wrap #s-con2 p,
+#control-3:checked~.con-wrap #s-con3 p,
+#control-4:checked~.con-wrap #s-con4 p,
+#control-5:checked~.con-wrap #s-con5 p{
+    animation: moveUp .5s ease-in .2s forwards;
+}
+
+@keyframes moveUp{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖放</title>
+    <style>
+        #d1{
+            width: 300px;
+            height: 200px;
+            margin-bottom: 100px;
+            border: 1px skyblue solid;
+        }
+        #img{
+            width: 250px;
+            height: 150px;
+            margin-left: 25px;
+            margin-top: 25px;
+        }
+        #d2{
+            width: 300px;
+            height: 200px;
+            border: 1px navajowhite solid;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function allowDrop(ev)
+    {
+        ev.preventDefault();
+    }
+
+    function drag(ev)
+    {
+        ev.dataTransfer.setData("Text",ev.target.id);
+    }
+
+    function drop(ev)
+    {
+        ev.preventDefault();
+        var data=ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+
+<!--<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="./imgs/bg.jpg" draggable="true" ondragstart="drag(event)" id="drag1" />
+</div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>-->
+<div id="d1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="./imgs/bg.jpg" alt="" id="img" draggable="true" ondragstart="drag(event)" >
+</div>
+<div id="d2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+</body>
+
+</html>
